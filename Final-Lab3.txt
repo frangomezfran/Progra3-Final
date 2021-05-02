@@ -1,0 +1,32 @@
+Final Laboratorio III
+
+IMPORTANTE:
+● Crear un proyecto con su Nombre y Apellido (solamente).
+● Añadir comentarios a su código, modularice y sea prolijo en la codificación,
+no sumará puntos pero podría restar.
+● Al finalizar, comprimir en un archivo solamente con su apellido para enviar
+por correo.
+
+Narrativa:
+	Desarrolle un sistema para una empresa que realiza venta de productos junto con
+el envío. Tiene dos grandes grupos de clientes a los que realiza envíos: Particulares y
+Empresas. Todos los productos que comercializa tienen en común: un número de stock,
+nombre y precio.
+	Los clientes particulares y las empresas se diferencian. Por un lado, para los
+particulares se les pide: el nombre, dirección y teléfono. Mientras que para las empresas
+necesitan tener nombre de fantasía, dirección y teléfono. Si una empresa realiza un
+pedido, se le aplica un descuento del 15% en el costo del envío.
+	Al momento de realizar un nuevo pedido, el sistema solicita: Indicar al cliente,
+seleccionar el producto y definir la cantidad de kms para poder calcular el costo de envío.
+	Al ingresar estos valores, el sistema muestra un mensaje con: el costo total (costo de
+producto + envío) y pide confirmación. Además, se debe indicar si existe stock del
+producto solicitado y descontarlo una vez confirmado el envío.
+Desarrolle:
+
+1) Cree las clases enunciadas en el texto junto con los atributos. (2pts)
+2) Ingresar por teclado clientes y productos. (1 pt)
+3) Realice un nuevo pedido por teclado junto con sus validaciones. (3 pt)
+4) Realizar 5 ventas por consola y mostrar el promedio de totales vendidos (costo
+del producto + envío). (2 pt)
+5) Indicar por consola, quien fue el cliente que más compras realizó y mostrar sus
+atributos. (2 pt)
