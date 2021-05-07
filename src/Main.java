@@ -9,7 +9,7 @@ public class Main {
         Cliente omarPintureria = new Empresa("Omar Pintureria","Avellaneda 123","2235432193");
 
         //--------------------- Productos ----------------------
-        Producto masilla = new Producto(10,"Masilla Anclaflex" , 300);
+        Producto masilla = new Producto(3,"Masilla Anclaflex" , 300);
         Producto pintura = new Producto(12,"Pintura Alba Negra",500);
         Producto rodillo = new Producto(200,"Rodillo PaintZoom",123);
 
@@ -17,40 +17,31 @@ public class Main {
         Local pepePintureria = new Local();
 
         //------------ Agrego los productos al Local ------------
-        pepePintureria.agregaProductos(masilla);
-        pepePintureria.agregaProductos(pintura);
-        pepePintureria.agregaProductos(rodillo);
+        pepePintureria.nuevoProducto(masilla);
+        pepePintureria.nuevoProducto(pintura);
+        pepePintureria.nuevoProducto(rodillo);
 
 
-        //  Inciso 3
-
-        Envio envioFran1 = new Envio(fran,20,rodillo);
-
-
-        //  Inciso 4
-
-        //---------------------- Envios ------------------------
-        Envio envioFran2 = new Envio(fran,20,masilla);
-        Envio envioPintureriaOmar = new Envio(omarPintureria,20,masilla);
-        Envio envioFran3 = new Envio(fran,20,rodillo);
-        Envio envioPintureriaOmar2 = new Envio(omarPintureria,20,pintura);
-        Envio envioFran4 = new Envio(fran,20,pintura);
+        //  Inciso 3 e Inciso 4
 
         //----------- Agrego los envios al Local --------------
-        pepePintureria.agregaEnvios(envioPintureriaOmar);
-        pepePintureria.agregaEnvios(envioFran1);
-        pepePintureria.agregaEnvios(envioFran2);
-        pepePintureria.agregaEnvios(envioPintureriaOmar2);
-        pepePintureria.agregaEnvios(envioFran3);
-        pepePintureria.agregaEnvios(envioFran4);
+        System.out.println( pepePintureria.nuevaVenta( omarPintureria,20,masilla ) );
+        System.out.println( pepePintureria.nuevaVenta( fran,20,masilla ) );
+        System.out.println( pepePintureria.nuevaVenta( fran, 20, masilla ) );
+        System.out.println( pepePintureria.nuevaVenta( omarPintureria,20,masilla ) );
+        System.out.println( pepePintureria.nuevaVenta( fran,20,masilla) );
+        System.out.println( pepePintureria.nuevaVenta( fran,20,rodillo ) );
+
 
         //-------- Muestro el promedio de ventas totales --------
         System.out.println("\nPromedio de ventas totales = "+pepePintureria.getPromedioVentas());
 
         //  Inciso 5
 
-        System.out.println("Cliente con mas compras: \n"+(pepePintureria.getClienteConMasCompras().toString()));
+        System.out.println("\nCliente con mas compras: \n\t"+(pepePintureria.getClienteConMasCompras().toString()));
 
+        // Muestro Lista de Envios
+        System.out.println("Lista de Envios:\n"+pepePintureria.muestraListaEnvios());
 
 
     }

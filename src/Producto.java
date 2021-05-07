@@ -36,6 +36,11 @@ public class Producto {
     }
 
     //----------------- Metodos -------------------
+
+    public void descuentaStock(){
+        this.stock--;
+    }
+
     @Override
     public String toString() {
         return "Producto [" +

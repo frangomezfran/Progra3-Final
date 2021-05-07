@@ -27,25 +27,58 @@ public class Local {
     }
 
     //----------------- Metodos -------------------
-    public void agregaProductos (Producto producto){
+    public void nuevoProducto (Producto producto){
         this.productos.add(producto);
     }
 
-    public void agregaEnvios(Envio envio){
+    public String nuevaVenta(Cliente cliente, double cantKms, Producto producto){
+        //Se que si retornara algo deberia ser un boolean, Lo hago con un string para verlo mejor en consola
 
-        if(!this.envios.isEmpty()){
+        if (verificaProductoEnInventario(producto)){//Si el producto existe y hay stock, continuamos
+
+            Envio envioAux = new Envio(cliente,cantKms,producto);
+
+            agregaEnviosFormaOrdenada(envioAux);
+
+            return "Envio Exitoso";
+
+        }
+
+        return "No hay stock";
+
+    }
+
+    public boolean verificaProductoEnInventario(Producto producto){
+
+        for(Producto aux : this.productos){
+
+            if(aux.getNombre().equals(producto.getNombre()) && aux.getStock() > 0){
+                //Si existe el producto a comprar y hay stock, podremos continuar haciendo el envio
+                aux.descuentaStock();
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+    public void agregaEnviosFormaOrdenada (Envio envio) { //De forma ordenada por cliente
+
+        if (!this.envios.isEmpty()) {
 
             int i = 0;
 
-            for(Envio aux : this.envios){
+            for (Envio aux : this.envios) {
 
-                if(aux.getCliente().getTelefono().equals(envio.getCliente().getTelefono())){
+                if (aux.getCliente().getTelefono().equals(envio.getCliente().getTelefono())) {
+                    //Quiero los envios agrupados por clientes, los elementos no se pisan, se mueven
                     i = this.envios.indexOf(aux);
-                    this.envios.add(i,envio);
+                    this.envios.add(i, envio);
                     break;
                 }
 
-                if(this.envios.size() == this.envios.indexOf(aux)+1){
+                if( this.envios.size() == (this.envios.indexOf(aux)+1) ){//Si llego al final de la lista, es un nuevo cliente
                     this.envios.add(envio);
                     break;
                 }
@@ -53,9 +86,8 @@ public class Local {
 
         }else{
 
-            this.envios.add(envio);
+            this.envios.add(envio);//Si la lista esta vacia, lo agrego
         }
-
     }
 
     public double getPromedioVentas (){
@@ -113,9 +145,11 @@ public class Local {
     public String muestraListaEnvios(){
 
         String listaEnvios = "";
+        int i = 1;
 
         for (Envio aux : this.envios){
-            listaEnvios += aux.toString() + "\n";
+            listaEnvios += i+") "+aux.toString() + "\n";
+            i++;
         }
 
         return listaEnvios;

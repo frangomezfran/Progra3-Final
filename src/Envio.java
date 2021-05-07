@@ -48,25 +48,23 @@ public class Envio {
     //----------------- Metodos -------------------
     public double getCostoTotal(){
 
-        double costoTotal = 0;
+        double costoTotal = this.producto.getPrecio() + (this.cantKms * this.precioPorKm);
 
-        costoTotal = this.producto.getPrecio() + (this.cantKms * this.precioPorKm);
+        if (this.cliente instanceof Empresa)
+            costoTotal = costoTotal - ( ( ( ((Empresa) this.cliente).getDescuento() * costoTotal ) / 100 ) );
 
-        if (this.cliente instanceof Empresa){
-
-            costoTotal = costoTotal - ( ( ((Empresa) this.cliente).getDescuento() * costoTotal ) / 100 );
-
-        }
 
         return costoTotal;
 
     }
 
     @Override
-    public String toString() {
-        return "Envio [  CantKms = " + this.cantKms +
+    public String toString() { //No muestro el stock en el envio
+        return "Envio [ CantKms = " + this.cantKms +
                 " | PrecioPorKm = " + this.precioPorKm +
-                "$ | CostoTotal = "+ this.getCostoTotal()+"$ ]\n"
-                +this.cliente.toString()+"\n"+this.producto.toString();
+                "$ | CostoTotal = "+ this.getCostoTotal()+"$ ]\n\t"
+                +this.cliente.toString()+"\n\t"+
+                "Producto [ Nombre = " + this.producto.getNombre() +
+                " | Precio = " + this.producto.getPrecio() + "$ ]";
     }
 }
